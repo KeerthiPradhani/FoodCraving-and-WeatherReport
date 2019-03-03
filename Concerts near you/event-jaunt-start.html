@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ 	<link href='//fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+ 	<title>EventJaunt&trade;</title>
+ 	
+	<!-- Import jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  
+ 
+  <script>
+  "use strict";
+
+	var EVENTFUL_URL = "//api.eventful.com/json/events/search?callback=jsonLoaded&app_key="
+	var API_KEY = "qpkXqjRLwbNdLQ4s";
+	var value;
+	window.onload = init;
+	
+	function init(){
+		document.querySelector("#search").onclick = getData;
+	}
+	
+	// MY FUNCTIONS
+	function getData(){
+		// build up our URL string
+		var url = EVENTFUL_URL; 
+		url += API_KEY;
+		url += "&location=";
+		
+		// get value of form field
+		value = document.querySelector("#searchterm").value;
+		
+		// get rid of any leading and trailing spaces
+		value = value.trim();
+		
+		// if there's no band to search then bail out of the function
+		if(value.length < 1) return;
+		
+		document.querySelector("#dynamicContent").innerHTML = "<b>Searching for " + value + "</b>";
+		
+		// replace spaces the user typed in the middle of the term with %20
+		// %20 is the hexadecimal value for a space
+		value = encodeURI(value); 
+		
+		// finally, add the artist name to the end of the string
+		url += value;
+		
+		// call the web service, and download the file
+		console.log("loading " + url);
+		$("#content").fadeOut(1000);
+		$.ajax({
+		  dataType: "jsonp",
+		  url: url,
+		  data: null,
+		  success: jsonLoaded
+		});
+	}
+	
+	
+	function jsonLoaded(obj){
+		console.log("obj = " +obj);
+		console.log("obj stringified = " + JSON.stringify(obj));
+		
+		// if there's an error, print a message and return
+		if(obj.error){
+			var status = obj.status;
+			var description = obj.description;
+			document.querySelector("#dynamicContent").innerHTML = "<h3><b>Error!</b></h3>" + "<p><i>" + status + "</i><p>" + "<p><i>" + description + "</i><p>";
+			$("#dynamicContent").fadeIn(500);
+			return; // Bail out
+		}
+		
+		// if there are no results, print a message and return
+		if(obj.total_items == 0){
+			var status = "No results found";
+			document.querySelector("#dynamicContent").innerHTML = "<p><i>" + status + "</i><p>" + "<p><i>";
+			$("#dynamicContent").fadeIn(500);
+			return; // Bail out
+		}
+		
+		// TODO
+		// if there is only one result, Eventful returns an object instead of an array
+		// create an array with the single object
+		
+		// If there is an array of results, loop through them
+		var allEvents = obj.events.event;
+		var i =0;
+		console.log("allEvents.length = " + allEvents.length);
+		var bigString = "<p><b>There are " + allEvents.length + " events for " + value + "</b></p>";
+		bigString += "<hr />";
+		
+		// loop through events here
+		// concatenate HTML to bigString as necessary
+		
+		for(i=0;i<allEvents.length;i++){
+			bigString += "<div><h2>"+obj.events.event[i].title+"</h2>";
+				var imageurl = "";
+		if(obj.events.event[i].image !== null){
+			imageurl =obj.events.event[i].image.thumb.url;
+		}
+			if(obj.events.event[i].image !== null){
+				bigString += "<img src =" + imageurl + "/>";
+			}
+			else{
+				bigString += "<p>"+"Image can not be found"+"</p>";
+			}
+			bigString += "<h3>"+"Description:"+"<br></h3>";
+			var description = obj.events.event[i].description;
+			if(description == null){
+				bigString += "<p>"+"No Description Found"+"</p>";
+			}
+			else{
+			bigString += "<p>"+obj.events.event[i].description+"</p>";
+			}
+			bigString += "<h3>"+"Let's enjoy the moment on"+"</h3>";
+			bigString += "<p>"+obj.events.event[i].start_time+"</p>";
+			bigString += "<h3>"+"We would like to see you at"+"</h3>";
+			bigString += "<p>"+obj.events.event[i].venue_address+", "+obj.events.event[i].city_name+"</p>";
+			var venuelink = obj.events.event[i].url;
+			bigString += "<a href ='"+venuelink+"'>Link to the Event</a><br><br></div>";
+		}
+		
+		document.querySelector("#dynamicContent").innerHTML = bigString;
+		$("#dynamicContent").fadeIn(500);
+	}	
+  
+  
+  
+  </script>
+  <style>
+  	*{
+ 		font-family: 'Coming Soon', sans-serif;
+ 	}
+ 	
+ 	h1{
+ 		color:#e4685d;
+ 	}
+ 	
+ 	.eventDiv{
+ 		border-bottom:1px solid gray;
+ 		margin-bottom:2em;
+ 	}
+ 	
+ 	#content{
+ 		margin-left: 5%;
+ 		margin-right:5%;
+ 		background-color:#FFF5EE;
+ 		min-height:500px;
+ 		padding:0 10px 10px 10px;
+ 		border:1px solid gray;
+ 	}
+ 	
+ 	#search{
+ 		box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+ 		background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+ 		background-color:#fc8d83;
+ 		border-radius:6px;
+ 		border:1px solid #d83526;
+ 		display:inline-block;
+ 		cursor:pointer;
+ 		color:#ffffff;
+ 		font-size:15px;
+ 		font-weight:bold;
+ 		padding:6px 24px;
+ 		text-decoration:none;
+ 		text-shadow:0px 1px 0px #b23e35;
+ 		margin-right:2em;
+ 	}
+
+ 	
+ 	#search:hover {
+ 		background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+ 		background-color:#e4685d;
+ 	}
+
+ 	
+ 	#search:active {
+ 		position:relative;
+ 		top:1px;
+ 	}
+
+ 	
+ 	#searchterm{
+ 		font-size:16px;
+ 	}
+ 	
+ 	img{
+ 		padding:7px;
+ 		border:1px solid black;
+ 		background-color:white;
+ 	}
+  </style>
+  
+</head>
+<body>
+ <h1>EventJaunt&trade;</h1>
+<img src="//igm.rit.edu/~acjvks/courses/2014-fall/330/files/i/anime-girl.jpg" alt="anime girl">
+<p><i>Your indispensable event finding service!</i></p>
+
+<button type="button" id="search">Get Event!<br />:-)</button>
+What is your location? -&gt; <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="Rochester" /> 
+
+<h2>Results</h2>
+ <div id="dynamicContent">
+ <p>No data yet!</p>
+ </div>
+ 
+
+</body>
+</html>
