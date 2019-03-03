@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ 	<title>Design Document</title>
+</head>
+<style>
+img{
+    width:75%;
+    margin-left:12.5%;
+}
+</style>
+<body>
+ <h1>Web Technologies II</h1>
+ <h2>Individual Project 1 – Web Services Mashup</h2>
+ <div>
+    <h1>Food Craving and Weather Report</h1>
+    <h3>Application Definition:</h3>
+    <p>The application helps the user find the nearby restaurants taking his entered location as a keyword</p>
+    <p>It also helps the user to analyze the weather in his location</p>
+    <h3>URLs used:</h3>
+
+        <a href = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Rochester&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDg_opFdkUSiE6N8t5ebzpkxdadAMH8U-o">
+            https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Rochester&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDg_opFdkUSiE6N8t5ebzpkxdadAMH8U-o</a><br><br>
+        
+        You can call the Search endpoint to find restaurants matching the keyword. Again, by providing the latitude and longitude parameters, you'll get the best results which take location into consideration. <br><br>
+        
+        <a href = "https://weather-ydn-yql.media.yahoo.com/forecastrss">https://weather-ydn-yql.media.yahoo.com/forecastrss</a> <br>
+        
+    <p>This helps the user view the weather prediction for the next week.</p>
+    <h3>A full list of features you could possibly implement to meet the application definition statement. </h3>
+    <p>1. In addition to the application requirement, the product could be made user friendly by just not displaying the restaurant info, but cafes and lounge bars and pubs info could be included. <br>
+
+        2. Google APIs could be incorporated to provide directions to the user. <br>
+        
+        3. Multiple Payment options could be included. <br>
+        
+        4. User reviews and sharing their experience could be included.<br> 
+
+        5. Weather prediction could be made comparable with multiple cities.<br>  </p>
+
+    <h3>A filtered list of features to meet the product definition statement.  </h3>
+
+    <p>1. Details of the restaurants to help user to choose one.<br> 
+
+        2. HTML and CSS to render the info on the web page. <br>
+        
+       3. JQuery, Bootstrap or media queries, Javascript to make the web page interactive. <br> 
+        
+        4. AJAX calls to retrieve info from the APIs. <br><br></p>
+    <h3>Sketch of UI</h3>
+    <img src = img/view.jpg></img>
+</div>
+
+
+ 
+
+</body>
+</html>

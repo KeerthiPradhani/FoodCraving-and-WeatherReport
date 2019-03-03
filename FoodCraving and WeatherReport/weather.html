@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Homepage</title>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha1.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac.js"></script>
+</head>
+      <body>
+   
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-*-*"> 
+                <img class = "weatherlogo" src="img/weatherlogo.png" />
+                <span class = "weatherheader">Weather Widget</span>
+              </div>
+            </div>
+        
+            <div>
+                <img src = "img/weatherbg.jpg" class = "bgimage"/>
+              <div>
+                  <input type="text" class="weatheraddressbar" id="txtAddress" placeholder="Please enter the location here!">
+                  <button type = "button" class="weathersearchbutton" id="weathersearch" onclick = "">Search</button>
+              </div>
+              <div class="vertical-menu">
+                <a href = ""><span class = "fa fa-facebook-f" aria-hidden></span></a>
+                <a href = ""><span class = "fa fa-google-plus" aria-hidden></span></a>
+                <a href = ""><span class = "fa fa-twitter" aria-hidden></span></a>
+                <a href = ""><span class = "fa fa-instagram" aria-hidden></span></a>
+              </div>
+              <div id="dynamicContent"></div>
+            </div>
+        
+            <div class = "footerdiv1">
+              <p class = "aboutus">About Us</p>
+              <p class= "contactus">Contact Us</p>
+              <p class = "privacy">Privacy and Terms</p>
+              <p class = "security">Security</p>
+              <p class = "features">Features</p>
+              <p class = "blog">Blog</p>
+            </div>
+          </div>
+        
+     <!--lightBox-->
+     <div class="lightBox1" id ="lightBox1">
+        <h3 class = 'headerspan1'><b>Weather Report!</b></h3>
+        <div id = "divcontent1"></div>
+        <div>
+            <a href="javascript:void(0);" class="closebutton1">Close</a>
+         </div>
+    </div>
+      <div class="bg_overlay1"></div>
+      </body>
+
+        
+
+<script>
+// Weather API sample javascript code
+// Requires: jQuery and crypto-js (v3.1.9)
+// 
+// Copyright 2019 Oath Inc. Licensed under the terms of the zLib license see https://opensource.org/licenses/Zlib for terms.
+
+"use strict";
+  
+  window.onload = init;
+  
+  function init(){
+    document.querySelector("#weathersearch").onclick = getData;
+  }
+function getData(){
+var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
+var method = 'GET';
+var app_id = 'cTOV0k5e';
+var consumer_key = 'dj0yJmk9enFySlNKbUhtS1RxJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTZk';
+var consumer_secret = 'bc384cf6e5e800f0ad4121fcfc3ea70c297a8970';
+var concat = '&';
+var city = document.getElementById("txtAddress").value;
+var query = {'location': city, 'format': 'json'};
+var oauth = {
+    'oauth_consumer_key': consumer_key,
+    'oauth_nonce': Math.random().toString(36).substring(2),
+    'oauth_signature_method': 'HMAC-SHA1',
+    'oauth_timestamp': parseInt(new Date().getTime() / 1000).toString(),
+    'oauth_version': '1.0'
+};
+
+var merged = {}; 
+$.extend(merged, query, oauth);
+// Note the sorting here is required
+var merged_arr = Object.keys(merged).sort().map(function(k) {
+  return [k + '=' + encodeURIComponent(merged[k])];
+});
+var signature_base_str = method
+  + concat + encodeURIComponent(url)
+  + concat + encodeURIComponent(merged_arr.join(concat));
+
+var composite_key = encodeURIComponent(consumer_secret) + concat;
+var hash = CryptoJS.HmacSHA1(signature_base_str, composite_key);
+var signature = hash.toString(CryptoJS.enc.Base64);
+
+oauth['oauth_signature'] = signature;
+var auth_header = 'OAuth ' + Object.keys(oauth).map(function(k) {
+  return [k + '="' + oauth[k] + '"'];
+}).join(',');
+
+$.ajax({
+  url: url + '?' + $.param(query),
+  headers: {
+    'Authorization': auth_header,
+    'Yahoo-App-Id': app_id 
+  },
+  method: 'GET',
+  success: weatherdataload
+});
+}
+
+function weatherdataload(data){
+console.log("obj stringified = " + JSON.stringify(data));
+
+var weatherstring = "";
+weatherstring += "<span class = 'cityname'>"+data.location.city+"</span><br>";
+weatherstring += "<span class='temperatureToday'>Temperature today:" + data.current_observation.condition.temperature +", " + data.current_observation.condition.text+"</span><br>";
+weatherstring += "<span class = 'forecastreport'>Forecast Report for next 10 days!</span><br>"
+for(var k=0;k<data.forecasts.length;k++){
+    weatherstring += "<span class = 'day'>"+data.forecasts[k].day+":</span><br>";
+    weatherstring += "<span class = 'lowesttemperature'> Lowest Temperature: "+data.forecasts[k].low+"</span><br>" ;
+    weatherstring += "<span class = 'highesttemperature'> Highest Temperature: "+data.forecasts[k].high+"</span><br>"; 
+    weatherstring += "<span class = 'overallsummary'> Overall Summary: "+data.forecasts[k].text+"<br><br>";
+}
+document.querySelector("#divcontent1").innerHTML = weatherstring;
+}
+</script>
+    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+</html>
