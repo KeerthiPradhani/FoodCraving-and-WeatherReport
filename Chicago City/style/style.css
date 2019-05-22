@@ -1,0 +1,215 @@
+.welcome{
+    font-family: "Playfair Display";
+    font-size: 85px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    color: bisque;
+    position: absolute;
+    margin-left: 13%;
+  }
+
+.explore{
+    font-family: "Playfair Display";
+    font-size: 85px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    color: deepskyblue;
+    position: absolute;
+    margin-left: 29%;
+    margin-top: 12%;
+}
+
+.history{
+    font-family: "Playfair Display";
+    font-size: 62px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    color: cornsilk;
+    position: absolute;
+    margin-left: 41%;
+    margin-top: 20%;
+}
+
+.attractions{
+    font-family: "Playfair Display";
+    font-size: 62px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    color: cornsilk;
+    position: absolute;
+    margin-left: 41%;
+    margin-top: 26%;   
+}
+
+.maptheplaces{
+    font-family: "Playfair Display";
+    font-size: 62px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    color: cornsilk;
+    position: absolute;
+    margin-left: 41%;
+    margin-top: 32%;
+}
+
+.historyimage1{
+    width: 30%;
+    float: left;
+    margin-right: 3%;
+}
+
+.historyimage2{
+    width: 30%;
+    float: right;
+    margin-bottom: 2%;
+}
+
+.historypara1{
+    font-family: "Playfair Display";
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    position: absolute;
+    float:right;
+    color: slategray;
+}
+
+.historypara2{
+    font-family: "Playfair Display";
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    position: absolute;
+    float:left;
+    margin-top: 28%;
+    color: slategray;
+}
+
+.homepagelink, .attractionslink, .maptheplaceslink, .historylink{
+    font-family: "Playfair Display";
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    margin-left: 15%;
+    display: inline;
+}
+.headline{
+    display: inline;
+}
+
+.slideShow {
+    position: relative;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.div1{
+    margin-top: 3%;
+}
+
+.att1, .att3{
+    width: 25%;
+    border-radius: 50%;
+    float: left;
+    display:inline ;
+    margin-right: 3%;
+}
+
+.att2{
+    width: 25%;
+    border-radius: 50%;
+    float: right;
+    display:inline ;
+    margin-left: 3%;
+}
+
+.div1, .div3{
+    margin-top: 3%;
+    font-family: "Playfair Display";
+    font-size: 22px;
+    font-style: normal;
+    font-variant: normal;
+    display: inline;
+}
+
+.div2{
+    margin-top: 3%;
+    font-family: "Playfair Display";
+    font-size: 22px;
+    font-style: normal;
+    font-variant: normal;
+    display: inline;
+}
+
+.mapdiv{
+    margin-top: 3%;
+    font-family: "Playfair Display";
+    font-size: 22px;
+    font-style: normal;
+    font-variant: normal;
+    display: inline;
+}
+
+.mapimg{
+    float: left;
+    display:inline ;
+    margin-right: 3%;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+
+.welcome{
+    font-size: 20px;
+}
+
+.explore{
+    font-size: 20px;
+}
+
+.history{
+    font-size: 20px;
+}
+
+.attractions{
+    font-size: 20px;
+}
+
+.maptheplaces{
+    font-size: 20px;
+}
+
+.historypara1, .historypara2{
+    font-size: 8px;
+}
+
+.homepagelink, .attractionslink, .maptheplaceslink, .historylink{
+    font-size: 15px;
+    width:100%;
+    display: block;
+}
+
+.headline{
+    font-size: 15px;
+    display: block;
+}
+
+.div1, .div2, .div3, .mapdiv{
+    font-size: 13px;
+}
+
+.mapimg{
+    width:100%;
+}
+
+.historyimage1, .historyimage2{
+    width: 20%;
+}
+}  
