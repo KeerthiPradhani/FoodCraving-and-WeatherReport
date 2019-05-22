@@ -1,0 +1,116 @@
+.objective {
+    border: 1px solid red;
+    background-color: pink;
+    padding: 5px;
+    margin: 5px;
+}
+
+.product-photo {
+    height: 64px;
+}
+
+.header {
+    width: 100%;
+    padding: 5px;
+}
+
+.header .menu-item {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.footer .copyright {
+    font-size: xx-small;
+    text-align: center;
+}
+
+.usernamespan, .passwordspan{
+    width: 90%;
+    font-size: 23px;
+    margin-left: 13%;
+}
+
+.usernameinput, .passwordinput{
+    width: 80%;
+    font-size: 20px;
+    border: solid 1px blue;
+    margin-left: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    margin-top: 1%;
+}
+
+h1{
+    text-align: -webkit-center;
+    margin-top: 4%;
+}
+
+.passworddiv, .logindiv, .signupdiv{
+    margin-top: 2%;
+}
+
+.loginbutton, .signupbutton{
+    width: 80%;
+    margin-left: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 20px;
+    background: #b8b894;
+    outline: none;
+    border:none;
+}
+
+.signuplink{
+    width: 80%;
+    font-size: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    outline: none;
+    margin-left: 44%;
+}
+
+.tableresponsive{
+    width: 80%;
+    margin-left: 10%;
+}
+
+table, thead, tr{
+    width:100%;
+}
+
+tr{
+    margin-top:20%;
+}
+
+th, td{
+    width:20%;
+    text-align: center;
+}
+
+img{
+    width:25%;
+}
+
+.headingrow{
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.tabledata{
+    font-size: 22px;
+}
+
+.cartbutton{
+    padding: 4%;
+    background: bisque;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+h3{
+    font-size: 23px;
+    text-align: -webkit-center;
+}
