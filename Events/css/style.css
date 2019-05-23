@@ -1,0 +1,97 @@
+*{
+	font-family:tahoma,verdana,sans-serif;
+}
+
+body{
+	margin: 7%;
+}
+
+.logo{
+	display:inline;
+}
+
+.messageviewer{
+	float:right;
+	display:inline;
+	color:grey;
+}
+
+.dynamicContent{
+	padding: 3%;
+    border: 1px solid grey;
+    margin: 3%;
+}
+
+.showtrashbutton{
+	background-color:#ff4007;
+	color: #ffffff;
+	border: none;
+    padding: 10px;
+}
+
+.inputquery{
+	padding: 10px;
+	float: right;
+	margin-right: 3%;
+}
+
+.submit{
+	padding: 12px;
+    background: bisque;
+    border: none;
+    outline: none;
+    float: right;
+}
+
+.maindiv{
+	min-width: -webkit-fill-available;
+    max-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+	max-height: -webkit-fill-available;
+	max-height: min-content;
+}
+.imagediv{
+	float: left;
+	width:20%;
+}
+
+.contentdiv{
+	float:left;
+	width:60%;
+}
+
+.buttondiv{
+	float: left;
+	width:20%;
+	min-height: -webkit-fill-available;
+}
+
+.source, .datetime{
+	color:grey;
+	margin:0px !important;
+	display: inline;
+}
+
+.starredbutton{
+	background-color:#f4b342;
+	color:#ffffff;
+	outline: none;
+	padding: 6%;
+}
+
+.unstarredbutton{
+	background-color: white;
+	color:black;
+	outline: none;
+    border: 1px solid black;
+    PADDING: 6%;
+
+}
+
+.trashbutton{
+	background-color:#ff4007;
+	color: #ffffff;
+	outline: none;
+	padding: 6%;
+	margin-left: 5%;
+}
